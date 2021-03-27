@@ -1,0 +1,45 @@
+video:
+
+  prediction:
+    input_directory: ../../data/tests/test_videos/video_with_face.mp4
+    input_type: Video # Video or Camera
+    frame_per_second: 6
+    is_rpi: False
+    model_type: 3d_CNN #CNN or 3d_CNN
+    model_format: IR #IR or h5
+    model_directory: ../../models/optimized_3d_cnn_ravdess_crema-d_model/
+    output_type: CMD # CMD, File
+    log_directory_path:
+    camera:
+      # webcame and rpi respectively 1680, 640
+      CAP_PROP_FRAME_WIDTH: 640
+      # webcame and rpi respectively 1220, 480
+      CAP_PROP_FRAME_HEIGHT: 480
+    preprocessing:
+      face_detector: False
+      face_alignment: False
+      spatial_normalization: True
+    model_input_shape:
+       channels: 1
+       height: 32
+       width: 32
+    gray_color: True
+    ir_run:
+      model: ../../models/optimized_3d_cnn_ravdess_crema-d_model/3d_cnn_ravdess_crema-d_model.xml
+      cpu_extension: # path to a shared library with the kernels implementations
+      device: 'CPU' # target device to infer on (CPU or MYRIAD)
+    emotion_toggle:
+      "01": True # neutral
+      "02": False # calm
+      "03": True # happy
+      "04": True # sad
+      "05": True # angry
+      "06": True # fearful
+      "07": False # disgusted
+      "08": False # surprised
+    emotion_map:
+      "01": "Neutral"
+      "02": "Happy"
+      "03": "Sad"
+      "04": "Angry"
+      "05": "Fearful"
